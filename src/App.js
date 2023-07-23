@@ -9,7 +9,8 @@ function App() {
   const [password, setPassword] = useState();
   const [isLogged, setIsLogged] = useState(false);
 
-  const login = (usr, pass) => {
+  const login = (event, usr, pass) => {
+    event.preventDefault();
     if (usr === "JohnDoe" && pass === "pass111") {
       setIsLogged(true);
     } else {
@@ -21,18 +22,18 @@ function App() {
     return (
       <form>
         <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required onChange={(event) => setUsername(event.target.value)}></input>
+        <input id='username' type="text" placeholder="Enter Username" name="uname" required onChange={(event) => setUsername(event.target.value)}></input>
   
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required onChange={(event) => setPassword(event.target.value)}></input>
+      <input id='password' type="password" placeholder="Enter Password" name="psw" required onChange={(event) => setPassword(event.target.value)}></input>
   
-      <button type="submit" onClick={() => login(username, password)}>Login</button>
+      <button id='login_btn' type='submit' onClick={(event) => login(event, username, password)}>Login</button>
       </form>
     )
   }
 
   const welcomePage = () => {
-    return (<div>You have been logged, {username}!</div>)
+    return (<div id='welcome_msg'>You have been logged, {username}!</div>)
   }
 
   return (
